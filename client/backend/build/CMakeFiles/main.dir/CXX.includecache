@@ -1,0 +1,14 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/ubuntu/MembershipSystem/client/backend/src/main.cpp
+
+/home/ubuntu/MembershipSystem/client/backend/src/rfid.cpp
+
+/home/ubuntu/MembershipSystem/client/backend/src/servercom.cpp
+
