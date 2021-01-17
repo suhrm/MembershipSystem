@@ -15,4 +15,6 @@ Be aware that the password set here should not be used in a production environme
 Im using the [SQL extension](https://marketplace.visualstudio.com/items?itemName=ms-mssql.mssql "SQL extension for MS Code") for Microsoft Visual Code to interact with the database and create the first database, schema and tables. 
 I used [this guide](https://docs.microsoft.com/en-us/sql/tools/visual-studio-code/sql-server-develop-use-vscode?view=sql-server-ver15) to understand how to connect to the database and execute SQL queries.
 
+Execute the JydenDB.sql script to create a database, some tbables and populate it with some data.
+
 
