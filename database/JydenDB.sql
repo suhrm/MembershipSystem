@@ -10,12 +10,13 @@ IF NOT EXISTS (
 CREATE DATABASE [JydenDB]
 GO
 
+USE JydenDB
 -- Create a new table called 'Members' in schema 'dbo'
 -- Drop the table if it already exists
 IF OBJECT_ID('dbo.Members', 'U') IS NULL
 BEGIN
    -- Create the table in the specified schema
-   CREATE TABLE dbo.Members
+   CREATE TABLE JydenDB.dbo.Members
    (
       MembersId INT NOT NULL PRIMARY KEY,
       FirstName [NVARCHAR](50) NOT NULL,
@@ -45,7 +46,7 @@ GO
 IF OBJECT_ID('dbo.Attendances', 'U') IS NULL
 BEGIN
    -- Create the table in the specified schema
-   CREATE TABLE dbo.Attendances
+   CREATE TABLE JydenDB.dbo.Attendances
    (
       MembersId INT NOT NULL FOREIGN KEY REFERENCES Members(MembersID),
       AttendanceDate DATE NOT NULL,
