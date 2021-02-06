@@ -34,6 +34,8 @@ set(PROJECT_SOURCES
         mainwindow.cpp
         mainwindow.h
         mainwindow.ui
+        usbwizard.h
+        usbwizard.cpp
         ${TS_FILES}
 )
 
@@ -57,4 +59,10 @@ else()
     qt5_create_translation(QM_FILES ${CMAKE_SOURCE_DIR} ${TS_FILES})
 endif()
 
-target_link_libraries(server PRIVATE Qt${QT_VERSION_MAJOR}::Widgets Qt${QT_VERSION_MAJOR}::Sql)
+link_directories(${CMAKE_SOURCE_DIR}/../lib/libusb-1.0)
+
+include_directories(
+    ${CMAKE_CURRENT_SOURCE_DIR}/../lib/libusb-1.0
+    )
+
+target_link_libraries(server PRIVATE Qt${QT_VERSION_MAJOR}::Widgets Qt${QT_VERSION_MAJOR}::Sql PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/../lib/libusb-1.0/libusb-1.0.a)

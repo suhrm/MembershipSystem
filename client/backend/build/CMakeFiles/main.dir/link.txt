@@ -1,1 +1,0 @@
-/usr/bin/c++    -rdynamic CMakeFiles/main.dir/src/main.cpp.o CMakeFiles/main.dir/src/rfid.cpp.o CMakeFiles/main.dir/src/servercom.cpp.o  -o client_backend   -L/home/ubuntu/MembershipSystem/client/backend/lib/json  -Wl,-rpath,/home/ubuntu/MembershipSystem/client/backend/lib/json: -lpthread -L/home/ubuntu/MembershipSystem/client/backend/lib/json 

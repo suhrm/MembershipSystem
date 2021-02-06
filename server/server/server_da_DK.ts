@@ -8,6 +8,22 @@
         <source>MainWindow</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <location filename="mainwindow.ui" line="36"/>
+        <location filename="mainwindow.ui" line="49"/>
+        <source>PushButton</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="65"/>
+        <source>Find member</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="78"/>
+        <source>Add member</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>QObject</name>

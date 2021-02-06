@@ -1,4 +1,5 @@
 #include "mainwindow.h"
+#include "usbwizard.h"
 
 #include <QApplication>
 #include <QMessageBox>
@@ -8,15 +9,14 @@
 #include <QSql>
 #include <QDebug>
 
+
+
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
+    UsbWizard usb;
+
     QSqlDatabase db = QSqlDatabase::addDatabase("QODBC");
-//    db.setHostName("localhost");
-//    db.setPort(1433);
-//    db.setDatabaseName("JydenDB");
-//    db.setUserName("SA");
-//    db.setPassword("Admin123");
     QString connectString = QStringLiteral(
         "DRIVER={SQL Server};"
         "SERVER=127.0.0.1,1433;"
@@ -32,7 +32,6 @@ int main(int argc, char *argv[])
 
     }
     QSqlQuery query;
-
 
     query.exec("SELECT FirstName, LastName FROM Members");
     query.next();
