@@ -4,7 +4,7 @@ UsbWizard::UsbWizard()
 {
     int rc;
     qInfo() << "Hello from UsbWizard";
-    rc = libusb_init (NULL);
+    rc = libusb_init (&ctx);
     if (rc < 0)
     {
         qInfo() << "failed to initialise libusb: " << libusb_error_name(rc);
@@ -81,9 +81,15 @@ UsbWizard::UsbWizard()
     //callb = reinterpret_cast < libusb_transfer_cb_fn > (&UsbWizard::cb_in);
     
     transfer_in  = libusb_alloc_transfer(0);
-    libusb_fill_interrupt_transfer( transfer_in, handle, 29,
+    libusb_fill_interrupt_transfer( transfer_in, handle, 129,
                                     in_buffer,  LEN_IN_BUFFER,  // Note: in_buffer is where input data written.
                                     &cb_in, NULL, 0); // no user data
+    int ret = libusb_submit_transfer(transfer_in);
+    for (int i = 0; i < transfer_in->length; i++)
+        std::cout << (int) transfer_in->buffer[i];
+    std::cout << std::endl;
+    qInfo() << "Transfer submit returned: " << libusb_error_name(ret) << errno;
+    update();
     return;
 
 }
@@ -130,11 +136,29 @@ bool UsbWizard::is_interesting(libusb_device *device){
 
 void UsbWizard::cb_in(struct libusb_transfer *transfer){
     qInfo() << "In callback envoked";
+    qInfo() << "status: " << libusb_transfer_status(transfer->status);
+    std::cout << "cardId: ";
+    for (int i = 0; i < 10; i++){
+        std::cout <<  (((int)transfer->buffer[2 + i*16]) - 29)%10;
+    }
+    std::cout << std::endl;
+    // Resubmit the transfer - ready for next event (figure out a way to do this in this static member function...
+
 }
 
 void UsbWizard::update(void){
+    qInfo() << "In update";
     int r =  libusb_handle_events_completed(ctx, NULL);
     if (r < 0){   // negative values are errors
-        qDebug() << "error: " << libusb_error_name(r);
+        qInfo() << "error: " << libusb_error_name(r);
+    }else{
+        qInfo() << "update. r: " << r;
     }
 }
+
+/*void UsbWizard::printCardNo(int* buffer){
+    for (int i = 0; i < 10; i++){
+        std::cout << (buffer[3 + i*16] - 29) % 10;
+    }
+    std::cout << std::endl;
+}*/
